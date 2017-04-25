@@ -5,90 +5,102 @@
 //  Created by Vlad Krupenko on 14.03.17.
 //  Copyright © 2017 fixique. All rights reserved.
 //
-
 import Foundation
-
-class Newton {
+class Newton
+{
+    private var n: Int = 1
+    private var u: Double
+    private var epsilon: Double
+    private var right: Double
+    private var uX: Double = 0.0
     
-    private var _u0: Double = 0.0
-    private var _u: Double = 0.0
-    private var _uNext: Double = 0.0
-    private var _uX: Double = 0.0
-    private var _capacity = 0.0
-    private var _iteration = 1
-    private var _funcResult: Double = 0.0
+    private var JResult = 0.0
     
-    var funcResult: Double {
+    var _n: Int {
+        return n
         
-        return _funcResult
     }
     
-    var iteration: Int {
+    var _uX: Double {
+        return uX
         
-        return _iteration
     }
     
-    var u: Double {
-        
+    var _u: Double {
         get {
-            return _u
+            return u
         } set {
-            _u = newValue
+            u = newValue
         }
     }
     
-    var uX: Double {
-        return _uX
-    }
-    
-    var capacity: Double {
-        
+    var _right: Double {
         get {
-            return _capacity
+            return right
         } set {
-            _capacity = newValue
+            right = newValue
         }
     }
     
-    init(u: Double, capacity: Double) {
-        
-        self._u = u
-        self._capacity = capacity
+    var _epsilon: Double {
+        get {
+            return epsilon
+        } set {
+            epsilon = newValue
+        }
     }
     
-    func recursion() {
+    var _JResult: Double {
+        return JResult
         
+    }
+    
+    init(u: Double, right: Double, epsilon: Double) {
+        self.u = u
+        self.right = right
+        self.epsilon = epsilon
         
-        if abs(firstDerivative(u: _u)) <= _capacity {
-            _uX = _u
-            _funcResult = function(u: _uX)
+    }
+    
+    
+    func algorithm() {
+        //let GS: GoldenSection = GoldenSection(left: u, right: right, epsilon: 0.01)
+        //GS.algorithm()
+        // u = GS._x
+        
+        if abs(JFirstDeriv(u: u)) <= epsilon {
+            uX = u
+            JResult = J(u: uX)
+            
         } else {
-            _u = _u - firstDerivative(u: _u) / secondDerivative(u: _u)
-            _iteration += 1
-            recursion()
+            u = u - JFirstDeriv(u: u) / JSecondDeriv(u: u)
+            n += 1
+            algorithm()
+            
         }
     }
     
-    private func function(u: Double) -> Double {
-        
-        //return (pow(u,2))
-        return (pow(u, 5) - (1/3) * pow(u,3) - 4 * u + 5)
-    }
-
-    
-    
-    
-    private func firstDerivative(u: Double) -> Double {
-        
-        //return (2*u)
-        return (5 * pow(u, 4) - pow(u, 2) - 4)
+    private func J(u: Double) -> Double {
+        //let function = pow(u,5) - 1/3 * pow(u,3) - 4 * u + 5
+        let function = u*u - u - 2
+        return function
         
     }
     
-    private func secondDerivative(u: Double) -> Double {
+    private func JFirstDeriv(u: Double) -> Double {
+        let function = 2 * u - 1
+        //let function = 5 * pow(u,4) - pow(u,2) - 4
         
+        return function
         
-        //return 1
-        return (20 * pow(u, 3) - 2 * u)
+    }
+    
+    private func JSecondDeriv(u: Double) -> Double {
+        let function = 2.0
+        //let function = 20 * pow(u,3) - 2 * u
+        
+        return function
+        
     }
 }
+

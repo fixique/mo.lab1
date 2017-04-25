@@ -64,12 +64,12 @@ class MainVC: UIViewController {
         funcResultP.text = "\(P._JResult)"
         dotP.text = "\(P._u2)" 
         
-        let N: Newton = Newton(u: leftBound, capacity: deviation)
-        N.recursion()
+        let N: Newton = Newton(u: leftBound, right: rightBound, epsilon: capacity)
+        N.algorithm()
         
-        iterationN.text = "\(N.iteration)"
-        funcResultN.text = "\(N.funcResult)"
-        dotN.text = "\(N.u)"
+        iterationN.text = "\(N._n)"
+        funcResultN.text = "\(N._JResult)"
+        dotN.text = "\(N._u)"
         
     }
 
