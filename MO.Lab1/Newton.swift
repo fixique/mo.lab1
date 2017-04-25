@@ -11,7 +11,7 @@ import Foundation
 class Newton {
     
     private var _u0: Double = 0.0
-    private var _u: Double
+    private var _u: Double = 0.0
     private var _uNext: Double = 0.0
     private var _uX: Double = 0.0
     private var _capacity = 0.0
@@ -35,6 +35,10 @@ class Newton {
         } set {
             _u = newValue
         }
+    }
+    
+    var uX: Double {
+        return _uX
     }
     
     var capacity: Double {
@@ -67,6 +71,7 @@ class Newton {
     
     private func function(u: Double) -> Double {
         
+        //return (pow(u,2))
         return (pow(u, 5) - (1/3) * pow(u,3) - 4 * u + 5)
     }
 
@@ -75,12 +80,15 @@ class Newton {
     
     private func firstDerivative(u: Double) -> Double {
         
+        //return (2*u)
         return (5 * pow(u, 4) - pow(u, 2) - 4)
         
     }
     
     private func secondDerivative(u: Double) -> Double {
         
+        
+        //return 1
         return (20 * pow(u, 3) - 2 * u)
     }
 }

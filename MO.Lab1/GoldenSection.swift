@@ -105,7 +105,7 @@ class GoldenSection {
     }
     
     private func function(u: Double) -> Double {
-        
+        //return pow(u,2)
         return (pow(u, 5) - (1/3) * pow(u,3) - 4 * u + 5)
     }
     
