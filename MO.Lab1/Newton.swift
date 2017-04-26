@@ -81,23 +81,23 @@ class Newton
     }
     
     private func J(u: Double) -> Double {
-        //let function = pow(u,5) - 1/3 * pow(u,3) - 4 * u + 5
-        let function = u*u - u - 2
+        let function = pow(u,5) - 1/3 * pow(u,3) - 4 * u + 5
+        //let function = u*u - u - 2
         return function
         
     }
     
     private func JFirstDeriv(u: Double) -> Double {
-        let function = 2 * u - 1
-        //let function = 5 * pow(u,4) - pow(u,2) - 4
+        //let function = 2 * u - 1
+        let function = 5 * pow(u,4) - pow(u,2) - 4
         
         return function
         
     }
     
     private func JSecondDeriv(u: Double) -> Double {
-        let function = 2.0
-        //let function = 20 * pow(u,3) - 2 * u
+        //let function = 2.0
+        let function = 20 * pow(u,3) - 2 * u
         
         return function
         

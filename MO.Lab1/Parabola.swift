@@ -167,10 +167,10 @@ class Parabola
     
     private func J(u: Double) -> Double {
         //let function = u * u - u - 2
-        let function = pow(u,5) - 4 * pow(u,3) + u + 1
+        //let function = pow(u,5) - 4 * pow(u,3) + u + 1
         return (pow(u, 5) - (1/3) * pow(u,3) - 4 * u + 5)
 
-        
+        //return function
     }
     
     public func condition() {

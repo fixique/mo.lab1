@@ -44,14 +44,14 @@ class MainVC: UIViewController {
         let deviation = Double(deviationField.text!)!
         
         let HL: HalfLine = HalfLine(left: leftBound, right: rightBound, capacity: capacity, deviation: deviation)
-        //HL.recursion()
+        HL.recursion()
         
         iterationHL.text = "\(HL.iteration)"
         funcResultHL.text = "\(HL.funcResult)"
         dotHL.text = "\(HL.uResult)"
         
         let GS: GoldenSection = GoldenSection(left: leftBound, right: rightBound, deviation: capacity)
-        //GS.recursion()
+        GS.recursion()
         
         iterationGS.text = "\(GS.iteration)"
         funcResultGS.text = "\(GS.funcResult)"
@@ -60,9 +60,16 @@ class MainVC: UIViewController {
         let P: Parabola = Parabola(u1: leftBound, u2: (rightBound + leftBound) / 2, u3: rightBound, e: deviation)
         //P.algorithm()
         
-        iterationP.text = "\(P._n)"
-        funcResultP.text = "\(P._JResult)"
-        dotP.text = "\(P._u2)" 
+        iterationP.text = "\(0)"
+        funcResultP.text = "\(0)"
+        dotP.text = "\(0)"
+        
+        let alertController = UIAlertController(title: "Ошбика", message: "Выпуклой тройки нет", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
         
         let N: Newton = Newton(u: leftBound, right: rightBound, epsilon: capacity)
         N.algorithm()
